@@ -1,77 +1,34 @@
 package controllers
 
 import (
-	"main-service/src/remotes"
-	"strconv"
-	"strings"
+	"main-service/src/services"
+	"main-service/src/utils/gofiber"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func BasicAdd(c *fiber.Ctx) error {
 	// Check, if received JSON data is valid.
-	a, err := strconv.ParseUint(c.Params("a"), 10, 64)
-	if err != nil {
-		err_msg := err.Error()
-		if strings.HasPrefix(err_msg, "strconv.ParseUint") {
-			err_msg = "a harus angka!"
-		}
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"message": err_msg,
-		})
+	a, err_a := gofiber.GetParameterUnsignedInteger(c, "a")
+	if err_a != nil {
+		return err_a
 	}
-	b, err := strconv.ParseUint(c.Params("b"), 10, 64)
-	if err != nil {
-		err_msg := err.Error()
-		if strings.HasPrefix(err_msg, "strconv.ParseUint") {
-			err_msg = "b harus angka!"
-		}
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"message": err_msg,
-		})
+	b, err_b := gofiber.GetParameterUnsignedInteger(c, "b")
+	if err_b != nil {
+		return err_b
 	}
-
-	result, err_msg := remotes.BasicAdd(a, b)
-	if err_msg != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": err_msg.Error(),
-		})
-	}
-	return c.JSON(fiber.Map{
-		"result": result,
-	})
+	return services.BasicAdd(c, a, b)
 }
 
 func BasicMultiply(c *fiber.Ctx) error {
 	// Check, if received JSON data is valid.
-	a, err := strconv.ParseUint(c.Params("a"), 10, 64)
-	if err != nil {
-		err_msg := err.Error()
-		if strings.HasPrefix(err_msg, "strconv.ParseUint") {
-			err_msg = "a harus angka!"
-		}
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"message": err_msg,
-		})
+	a, err_a := gofiber.GetParameterUnsignedInteger(c, "a")
+	if err_a != nil {
+		return err_a
 	}
-	b, err := strconv.ParseUint(c.Params("b"), 10, 64)
-	if err != nil {
-		err_msg := err.Error()
-		if strings.HasPrefix(err_msg, "strconv.ParseUint") {
-			err_msg = "b harus angka!"
-		}
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"message": err_msg,
-		})
+	b, err_b := gofiber.GetParameterUnsignedInteger(c, "b")
+	if err_b != nil {
+		return err_b
 	}
-
-	result, err_msg := remotes.BasicMultiply(a, b)
-	if err_msg != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
-			"message": err_msg.Error(),
-		})
-	}
-	return c.JSON(fiber.Map{
-		"result": result,
-	})
+	return services.BasicMultiply(c, a, b)
 }

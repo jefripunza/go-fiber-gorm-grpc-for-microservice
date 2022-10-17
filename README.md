@@ -22,6 +22,7 @@
 | repositories | /src/repositories | logic khusus untuk pengolahan database (insert, read, update, delete)                                           |      ❌      |
 | remotes      | /src/remotes      | function pengambilan data dari gRPC service lain (communications)                                               |      ❌      |
 | routers      | /src/routers      | tempat routing endpoint url (api) dan juga pemasangan middleware                                                |      ❌      |
+| services     | /src/services     | tempat **logic utama** dari service ini (logic utama hanya boleh disini)                                        |      ❌      |
 | utils        | /src/utils        | method penting yang sangat digunakan dan bisa saja reusable                                                     |      ❌      |
 
 ---
