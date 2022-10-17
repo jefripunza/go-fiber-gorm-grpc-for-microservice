@@ -1,4 +1,4 @@
-package app
+package apps
 
 import (
 	"fmt"
@@ -20,7 +20,6 @@ import (
 func DatabaseConnect() *gorm.DB {
 	db_type := os.Getenv("DB_TYPE")
 	db_log := os.Getenv("DB_LOG")
-	fmt.Println(db_type)
 	var connection *gorm.DB
 	var err_msg error
 	dsn := configs.DatabaseConfig()

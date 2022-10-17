@@ -1,4 +1,4 @@
-package communications
+package remotes
 
 import (
 	"context"

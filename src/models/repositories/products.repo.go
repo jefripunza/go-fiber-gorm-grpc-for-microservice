@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"main-service/src/app"
+	"main-service/src/apps"
 	"main-service/src/dto/request"
 	"main-service/src/dto/response"
 	"main-service/src/models/entities"
@@ -13,7 +13,7 @@ import (
 
 // Create
 func InsertProduct(data *request.CreateProduct) *gorm.DB {
-	db := app.DatabaseConnect()
+	db := apps.DatabaseConnect()
 	result := db.Debug().Table("products").Create(&entities.Products{Code: data.Code, Price: data.Price})
 	if result.Error != nil {
 		panic(result.Error)
@@ -23,13 +23,13 @@ func InsertProduct(data *request.CreateProduct) *gorm.DB {
 
 // Read
 func ReadProducts() []response.ReadProducts {
-	db := app.DatabaseConnect()
+	db := apps.DatabaseConnect()
 	var products []response.ReadProducts
 	db.Debug().Table("products").Order("id desc").Find(&products)
 	return products
 }
 func ReadProductById(id int) entities.Products {
-	db := app.DatabaseConnect()
+	db := apps.DatabaseConnect()
 	var products entities.Products
 	result := db.Debug().Table("products").First(&products, id)
 	if result.Error != nil {
@@ -38,7 +38,7 @@ func ReadProductById(id int) entities.Products {
 	return products
 }
 func ReadProductByCode(code string) entities.Products {
-	db := app.DatabaseConnect()
+	db := apps.DatabaseConnect()
 	var products entities.Products
 	result := db.Debug().Table("products").Order("id desc").First(&products, "code = ?", code)
 	if result.Error != nil {
@@ -49,7 +49,7 @@ func ReadProductByCode(code string) entities.Products {
 
 // Update
 func UpdateProduct(data *request.UpdateProduct) {
-	db := app.DatabaseConnect()
+	db := apps.DatabaseConnect()
 	var products entities.Products
 	result := db.Debug().Table("products").Model(&products).Where("id = ?", data.ID).Updates(entities.Products{Price: data.Price, Code: data.Code})
 	if result.Error != nil {
@@ -59,7 +59,7 @@ func UpdateProduct(data *request.UpdateProduct) {
 
 // Delete
 func DeleteProductById(id int) {
-	db := app.DatabaseConnect()
+	db := apps.DatabaseConnect()
 	var products entities.Products
 	result := db.Debug().Table("products").Delete(&products, id)
 	if result.Error != nil {

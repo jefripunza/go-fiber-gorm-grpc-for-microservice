@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"main-service/src/communications"
+	"main-service/src/remotes"
 	"strconv"
 	"strings"
 
@@ -31,7 +31,7 @@ func BasicAdd(c *fiber.Ctx) error {
 		})
 	}
 
-	result, err_msg := communications.BasicAdd(a, b)
+	result, err_msg := remotes.BasicAdd(a, b)
 	if err_msg != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": err_msg.Error(),
@@ -65,7 +65,7 @@ func BasicMultiply(c *fiber.Ctx) error {
 		})
 	}
 
-	result, err_msg := communications.BasicMultiply(a, b)
+	result, err_msg := remotes.BasicMultiply(a, b)
 	if err_msg != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"message": err_msg.Error(),

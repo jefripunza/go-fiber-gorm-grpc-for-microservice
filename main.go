@@ -7,9 +7,8 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/joho/godotenv"
 
-	run "main-service/src/app"
+	run "main-service/src/apps"
 )
 
 // @title GO Fiber Training
@@ -20,10 +19,12 @@ import (
 // @contact.email jefriherditriyanto@gmail.com
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-// @host localhost:8080
+// @host localhost:8082
 // @BasePath /
 func main() {
-	godotenv.Load(".env")
+
+	// get all value on environment
+	configs.GetEnvironment()
 
 	// Define Fiber config.
 	config := configs.FiberConfig()
@@ -43,6 +44,7 @@ func main() {
 	routers.Swagger(app)
 	routers.NotFound(app)
 
+	//-> Execute all Apps
 	run.WebServer(app)
 	run.DatabaseMigration() // activate in .env > DB_SYNC
 	run.GrpcServer()

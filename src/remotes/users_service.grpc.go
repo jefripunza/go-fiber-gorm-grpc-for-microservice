@@ -1,4 +1,4 @@
-package communications
+package remotes
 
 func UserDetail(id int32) {
 	// conn, err := grpc.Dial(fmt.Sprintf("localhost:%v", os.Getenv("USERS_SERVICE")), grpc.WithInsecure())
