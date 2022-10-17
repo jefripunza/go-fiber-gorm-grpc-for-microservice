@@ -20,9 +20,7 @@ import (
 func DatabaseConnect() *gorm.DB {
 	db_type := os.Getenv("DB_TYPE")
 	db_log := os.Getenv("DB_LOG")
-	var connection *gorm.DB
-	var err_msg error
-	dsn := configs.DatabaseConfig()
+
 	var db_config *gorm.Config
 	if db_log == "true" {
 		newLogger := logger.New(
@@ -40,6 +38,10 @@ func DatabaseConnect() *gorm.DB {
 	} else {
 		db_config = &gorm.Config{}
 	}
+
+	var connection *gorm.DB
+	var err_msg error
+	dsn := configs.DatabaseConfig()
 	if db_type == "sqlite" {
 		db, err := gorm.Open(sqlite.Open(fmt.Sprintf("%v.db", os.Getenv("DB_NAME"))), db_config)
 		connection = db
@@ -55,10 +57,12 @@ func DatabaseConnect() *gorm.DB {
 	} else {
 		panic("hey dude, database type is not found!")
 	}
+
 	if err_msg != nil {
 		log.Fatalln(err_msg)
 		panic("failed to Database database")
 	}
+
 	return connection
 }
 

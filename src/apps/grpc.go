@@ -24,9 +24,11 @@ func GrpcServer() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
+
 	svc := grpc.NewServer()
-	proto.RegisterMainServiceServer(svc, &server{})
+	proto.RegisterMainServiceServer(svc, &server{}) // register this gRPC with real name service
 	reflection.Register(svc)
+
 	fmt.Printf("gRPC Started at http://localhost:%v ...\n", grpc_port)
 	if err := svc.Serve(lis); err != nil {
 		log.Fatalf("failed to start gRPC serve: %v", err)
@@ -38,6 +40,11 @@ func GrpcServer() {
 //-> Titipan Function
 
 func (s *server) Detail(_ context.Context, request *proto.ResponseMain) (*proto.ResponseMain, error) {
-	id := request.GetId()
-	return &proto.ResponseMain{Id: id}, nil
+	// your logic from gRPC request
+	return &proto.ResponseMain{
+		Id:          request.GetId(),
+		Name:        "Example Product",
+		Price:       1922,
+		Description: "manusia tidak akan bisa di hancurkan selama dia masih setia pada hatinya...",
+	}, nil
 }

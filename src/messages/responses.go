@@ -1,9 +1,12 @@
 package messages
 
 const (
-	SaveDataSuccess      = "berhasil menambahkan data"
-	UpdateDataSuccess    = "berhasil mengubah data"
-	DeleteDataSuccess    = "berhasil menghapus data"
+	//-> Data
+	DataSaveSuccess   = "berhasil menambahkan data"
+	DataUpdateSuccess = "berhasil mengubah data"
+	DataDeleteSuccess = "berhasil menghapus data"
+
+	//-> JWT
 	JwtMissingToken      = "Authorization Bearer is required!"
 	JwtUnauthorizedToken = "Not Authorized"
 )

@@ -4,6 +4,7 @@ import (
 	"main-service/src/configs"
 	"main-service/src/middlewares"
 	"main-service/src/routers"
+	"main-service/src/utils"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -24,7 +25,7 @@ import (
 func main() {
 
 	// get all value on environment
-	configs.GetEnvironment()
+	utils.GetEnvironment()
 
 	// Define Fiber config.
 	config := configs.FiberConfig()

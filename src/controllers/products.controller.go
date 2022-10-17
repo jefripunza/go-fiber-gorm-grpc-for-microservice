@@ -27,7 +27,7 @@ func ProductCreateOne(c *fiber.Ctx) error {
 		Try: func() {
 			repositories.InsertProduct(dto)
 			result = c.JSON(fiber.Map{
-				"message": messages.SaveDataSuccess,
+				"message": messages.DataSaveSuccess,
 			})
 		},
 		Catch: func(e handlers.Exception) {
@@ -111,7 +111,7 @@ func ProductUpdateById(c *fiber.Ctx) error {
 		Try: func() {
 			repositories.UpdateProduct(dto)
 			result = c.JSON(fiber.Map{
-				"message": messages.UpdateDataSuccess,
+				"message": messages.DataUpdateSuccess,
 			})
 		},
 		Catch: func(e handlers.Exception) {
@@ -143,7 +143,7 @@ func ProductDeleteById(c *fiber.Ctx) error {
 		Try: func() {
 			repositories.DeleteProductById(id)
 			result = c.JSON(fiber.Map{
-				"message": messages.DeleteDataSuccess,
+				"message": messages.DataDeleteSuccess,
 			})
 		},
 		Catch: func(e handlers.Exception) {

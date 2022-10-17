@@ -2,18 +2,12 @@ package remotes
 
 import (
 	"context"
-	"fmt"
 	"main-service/proto"
-	"os"
-
-	"google.golang.org/grpc"
+	"main-service/src/utils"
 )
 
 func BasicAdd(a uint64, b uint64) (int64, error) {
-	conn, err := grpc.Dial(fmt.Sprintf("%v:%v", os.Getenv("GRPC_HOST"), os.Getenv("BASIC_SERVICE")), grpc.WithInsecure())
-	if err != nil {
-		panic(err)
-	}
+	conn := utils.GrpcConnectTo("BASIC_SERVICE")
 	client := proto.NewBasicServiceClient(conn)
 
 	var response int64
@@ -24,15 +18,11 @@ func BasicAdd(a uint64, b uint64) (int64, error) {
 	} else {
 		err_msg = err
 	}
-
 	return response, err_msg
 }
 
 func BasicMultiply(a uint64, b uint64) (int64, error) {
-	conn, err := grpc.Dial(fmt.Sprintf("%v:%v", os.Getenv("GRPC_HOST"), os.Getenv("BASIC_SERVICE")), grpc.WithInsecure())
-	if err != nil {
-		panic(err)
-	}
+	conn := utils.GrpcConnectTo("BASIC_SERVICE")
 	client := proto.NewBasicServiceClient(conn)
 
 	var response int64
@@ -43,6 +33,5 @@ func BasicMultiply(a uint64, b uint64) (int64, error) {
 	} else {
 		err_msg = err
 	}
-
 	return response, err_msg
 }
