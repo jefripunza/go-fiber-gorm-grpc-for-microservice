@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  main-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082 # api
+      - 4080:4080 # gRPC
+networks:
+  default:
+    name: nginx_default
+    external: true

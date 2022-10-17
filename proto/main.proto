@@ -1,0 +1,20 @@
+syntax = "proto3";
+package proto;
+option go_package = "main-service/proto";
+
+// ===================================
+
+message RequestMain {
+    int32 id = 1;
+}
+
+message ResponseMain {
+    int32 id = 1;
+    string name = 2;
+    int32 price = 3;
+    string description = 4;
+}
+
+service MainService {
+    rpc Example(RequestMain) returns (ResponseMain);
+}
