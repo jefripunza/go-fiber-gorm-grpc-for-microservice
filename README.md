@@ -39,8 +39,12 @@ docker-compose up -d
 ---
 
 ## URL Testing (result)
-- React JS [http://localhost](http://localhost)
-  ![React JS (root)](git_assets/react-js-root.png)
+- Add [http://localhost/api/main/v1/add/3/6](http://localhost/api/main/v1/add/3/6)
+  ![Operation Add](git_assets/operation-add.png)
+- Multiply [http://localhost/api/main/v1/multiply/3/6](http://localhost/api/main/v1/multiply/3/6)
+  ![Operation Multiply](git_assets/operation-multiply.png)
+- Result (gRPC Basic Service) in Docker
+  ![Docker Result](git_assets/docker-result.png)
 
 Note :
 - clone semua ini didalam 1 folder (seperti di **Folder Structure**)
