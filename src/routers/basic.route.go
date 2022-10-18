@@ -1,9 +1,9 @@
 package routers
 
 import (
-	"github.com/gofiber/fiber/v2"
-
 	"main-service/src/controllers"
+
+	"github.com/gofiber/fiber/v2"
 )
 
 func Basic(r fiber.Router) {

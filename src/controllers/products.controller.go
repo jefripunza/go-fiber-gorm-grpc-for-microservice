@@ -2,24 +2,44 @@ package controllers
 
 import (
 	"main-service/src/dto/request"
+	"main-service/src/helpers"
 	"main-service/src/services"
 	"main-service/src/utils/gofiber"
 
 	"github.com/gofiber/fiber/v2"
 )
 
+// @Title        Membuat Product Baru
+// @Description  menambahkan product baru kedalam database
+// @Tags         managements
+// @Router       /api/main/v1/add [post]
+// @Security     BearerAuth
+// @Accept       json
+// @Produce      json
+// @Param        product  body      request.CreateProduct   true  "Content New Product"
+// @Success      200      {object}  response.ProductAdd200  "success add product"
+// @Failure      400      {object}  response.ProductAdd400  "(code harus di isi !!) (harga harus lebih dari 0 !!)"
 func ProductCreateOne(c *fiber.Ctx) error {
 	dto := &request.CreateProduct{}
+	// validation body is json
 	err := gofiber.BodyValidation(c, dto)
 	if err != nil {
 		return err
 	}
 
-	return services.ProductCreateOne(c, dto)
+	// validation body per key
+	if helpers.LengthOfString(dto.Code) == 0 {
+		return gofiber.ResponseBadRequest(c, "code harus di isi !!")
+	}
+	if dto.Price == 0 {
+		return gofiber.ResponseBadRequest(c, "harga harus lebih dari 0 !!")
+	}
+
+	return gofiber.ResponseService(c, services.ProductCreateOne(dto))
 }
 
 func ProductReadAllData(c *fiber.Ctx) error {
-	return services.ProductReadAllData(c)
+	return gofiber.ResponseService(c, services.ProductReadAllData())
 }
 
 func ProductById(c *fiber.Ctx) error {
@@ -28,13 +48,13 @@ func ProductById(c *fiber.Ctx) error {
 		return err_id
 	}
 
-	return services.ProductById(c, id)
+	return gofiber.ResponseService(c, services.ProductById(id))
 }
 
 func ProductByCode(c *fiber.Ctx) error {
 	code := gofiber.GetParameterString(c, "code")
 
-	return services.ProductByCode(c, code)
+	return gofiber.ResponseService(c, services.ProductByCode(code))
 }
 
 func ProductUpdateById(c *fiber.Ctx) error {
@@ -44,7 +64,7 @@ func ProductUpdateById(c *fiber.Ctx) error {
 		return err
 	}
 
-	return services.ProductUpdateById(c, dto)
+	return gofiber.ResponseService(c, services.ProductUpdateById(dto))
 }
 
 func ProductDeleteById(c *fiber.Ctx) error {
@@ -53,5 +73,5 @@ func ProductDeleteById(c *fiber.Ctx) error {
 		return err_id
 	}
 
-	return services.ProductDeleteById(c, id)
+	return gofiber.ResponseService(c, services.ProductDeleteById(id))
 }

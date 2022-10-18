@@ -1,4 +1,22 @@
 basePath: /
+definitions:
+  request.CreateProduct:
+    properties:
+      code:
+        type: string
+      price:
+        type: integer
+    type: object
+  response.ProductAdd200:
+    properties:
+      message:
+        type: string
+    type: object
+  response.ProductAdd400:
+    properties:
+      message:
+        type: string
+    type: object
 host: localhost:8082
 info:
   contact:
@@ -11,8 +29,37 @@ info:
   termsOfService: http://swagger.io/terms/
   title: GO Fiber Training
   version: "1.0"
-paths: {}
+paths:
+  /api/main/v1/add:
+    post:
+      consumes:
+      - application/json
+      description: menambahkan product baru kedalam database
+      parameters:
+      - description: Content New Product
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/request.CreateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: success add product
+          schema:
+            $ref: '#/definitions/response.ProductAdd200'
+        "400":
+          description: code harus di isi !!, body is still missing
+          schema:
+            $ref: '#/definitions/response.ProductAdd400'
+      security:
+      - BearerAuth: []
+      tags:
+      - managements
 securityDefinitions:
-  BasicAuth:
-    type: basic
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"

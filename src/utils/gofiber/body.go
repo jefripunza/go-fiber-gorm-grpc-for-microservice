@@ -1,6 +1,8 @@
 package gofiber
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
 func BodyValidation(c *fiber.Ctx, dto interface{}) error {
 	if err := c.BodyParser(dto); err != nil {

@@ -7,10 +7,18 @@ import (
 )
 
 type ReadProducts struct {
-	ID        uint           `gorm:"primarykey" json:"id"`
-	CreatedAt time.Time      `gorm:"column:created_at" json:"created_at"`
-	UpdatedAt time.Time      `gorm:"column:updated_at" json:"updated_at"`
-	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`
-	Code      string         `gorm:"column:code" json:"code"`
-	Price     uint           `gorm:"column:price" json:"price"`
+	ID        uint           `json:"id"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `json:"-"`
+	Code      string         `json:"code"`
+	Price     uint           `json:"price"`
+}
+
+type ProductAdd200 struct {
+	Message string `json:"message"`
+}
+
+type ProductAdd400 struct {
+	Message string `json:"message"`
 }

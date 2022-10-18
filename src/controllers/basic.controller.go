@@ -17,7 +17,7 @@ func BasicAdd(c *fiber.Ctx) error {
 	if err_b != nil {
 		return err_b
 	}
-	return services.BasicAdd(c, a, b)
+	return gofiber.ResponseService(c, services.BasicAdd(a, b))
 }
 
 func BasicMultiply(c *fiber.Ctx) error {
@@ -30,5 +30,5 @@ func BasicMultiply(c *fiber.Ctx) error {
 	if err_b != nil {
 		return err_b
 	}
-	return services.BasicMultiply(c, a, b)
+	return gofiber.ResponseService(c, services.BasicMultiply(a, b))
 }

@@ -2,30 +2,45 @@ package services
 
 import (
 	"main-service/src/remotes"
+	"main-service/src/utils/gofiber"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func BasicAdd(c *fiber.Ctx, a uint64, b uint64) error {
+func BasicAdd(a uint64, b uint64) gofiber.Response {
+	var response gofiber.Response
 	result, err_msg := remotes.BasicAdd(a, b)
+
 	if err_msg != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+		response.Code = fiber.StatusBadRequest
+		response.Data = fiber.Map{
 			"message": err_msg.Error(),
-		})
+		}
+	} else {
+		response.Code = fiber.StatusOK
+		response.Data = fiber.Map{
+			"result": result,
+		}
 	}
-	return c.JSON(fiber.Map{
-		"result": result,
-	})
+
+	return response
 }
 
-func BasicMultiply(c *fiber.Ctx, a uint64, b uint64) error {
+func BasicMultiply(a uint64, b uint64) gofiber.Response {
+	var response gofiber.Response
 	result, err_msg := remotes.BasicMultiply(a, b)
+
 	if err_msg != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+		response.Code = fiber.StatusBadRequest
+		response.Data = fiber.Map{
 			"message": err_msg.Error(),
-		})
+		}
+	} else {
+		response.Code = fiber.StatusOK
+		response.Data = fiber.Map{
+			"result": result,
+		}
 	}
-	return c.JSON(fiber.Map{
-		"result": result,
-	})
+
+	return response
 }

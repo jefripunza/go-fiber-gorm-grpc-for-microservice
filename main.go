@@ -24,7 +24,10 @@ import (
 
 // @host localhost:8082
 // @BasePath /
-// @securityDefinitions.basic  BasicAuth
+
+// @securityDefinitions.apikey BearerAuth
+// @in header
+// @name Authorization
 func main() {
 
 	// get all value on environment
@@ -41,7 +44,7 @@ func main() {
 	// REGISTER ALL API ROUTERS
 	api := app.Group(configs.GetBaseEndpoint())
 	routers.Basic(api) //> Connect to gRPC Service
-	routers.Main(api)
+	routers.Products(api)
 
 	// REQUIRE ROUTERS
 	routers.Index(app)

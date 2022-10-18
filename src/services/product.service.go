@@ -6,111 +6,136 @@ import (
 	"main-service/src/handlers"
 	"main-service/src/messages"
 	"main-service/src/models/repositories"
+	"main-service/src/utils/gofiber"
 
 	"github.com/gofiber/fiber/v2"
 )
 
-func ProductCreateOne(c *fiber.Ctx, dto *request.CreateProduct) error {
-	var result error
+func ProductCreateOne(dto *request.CreateProduct) gofiber.Response {
+	var response gofiber.Response
+
 	handlers.Error{
 		Try: func() {
 			repositories.InsertProduct(dto)
-			result = c.JSON(fiber.Map{
+			response.Code = fiber.StatusOK
+			response.Data = fiber.Map{
 				"message": messages.DataSaveSuccess,
-			})
+			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
-			result = c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			response.Code = fiber.StatusBadRequest
+			response.Data = fiber.Map{
 				"error": e,
-			})
+			}
 		},
 		Finally: func() {},
 	}.Do()
 
-	return result
+	return response
 }
 
-func ProductReadAllData(c *fiber.Ctx) error {
-	return c.JSON(fiber.Map{
+func ProductReadAllData() gofiber.Response {
+	var response gofiber.Response
+
+	response.Code = fiber.StatusOK
+	response.Data = fiber.Map{
 		"data": repositories.ReadProducts(),
-	})
+	}
+
+	return response
 }
 
-func ProductById(c *fiber.Ctx, id int) error {
-	var result error
+func ProductById(id int) gofiber.Response {
+	var response gofiber.Response
+
 	handlers.Error{
 		Try: func() {
-			result = c.JSON(repositories.ReadProductById(id))
+			response.Code = fiber.StatusOK
+			response.Data = fiber.Map{
+				"data": repositories.ReadProductById(id),
+			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
-			result = c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"message": fmt.Sprintf("%v", e),
-			})
+			response.Code = fiber.StatusBadRequest
+			response.Data = fiber.Map{
+				"error": e,
+			}
 		},
 		Finally: func() {},
 	}.Do()
 
-	return result
+	return response
 }
 
-func ProductByCode(c *fiber.Ctx, code string) error {
-	var result error
+func ProductByCode(code string) gofiber.Response {
+	var response gofiber.Response
+
 	handlers.Error{
 		Try: func() {
-			result = c.JSON(repositories.ReadProductByCode(code))
+			response.Code = fiber.StatusOK
+			response.Data = fiber.Map{
+				"data": repositories.ReadProductByCode(code),
+			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
-			result = c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-				"message": fmt.Sprintf("%v", e),
-			})
+			response.Code = fiber.StatusBadRequest
+			response.Data = fiber.Map{
+				"error": e,
+			}
 		},
 		Finally: func() {},
 	}.Do()
 
-	return result
+	return response
 }
 
-func ProductUpdateById(c *fiber.Ctx, dto *request.UpdateProduct) error {
-	var result error
+func ProductUpdateById(dto *request.UpdateProduct) gofiber.Response {
+	var response gofiber.Response
+
 	handlers.Error{
 		Try: func() {
 			repositories.UpdateProduct(dto)
-			result = c.JSON(fiber.Map{
+			response.Code = fiber.StatusOK
+			response.Data = fiber.Map{
 				"message": messages.DataUpdateSuccess,
-			})
+			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
-			result = c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			response.Code = fiber.StatusBadRequest
+			response.Data = fiber.Map{
 				"error": e,
-			})
+			}
 		},
 		Finally: func() {},
 	}.Do()
 
-	return result
+	return response
 }
 
-func ProductDeleteById(c *fiber.Ctx, id int) error {
-	var result error
+func ProductDeleteById(id int) gofiber.Response {
+	var response gofiber.Response
+
 	handlers.Error{
 		Try: func() {
 			repositories.DeleteProductById(id)
-			result = c.JSON(fiber.Map{
+			response.Code = fiber.StatusOK
+			response.Data = fiber.Map{
 				"message": messages.DataDeleteSuccess,
-			})
+			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
-			result = c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			response.Code = fiber.StatusBadRequest
+			response.Data = fiber.Map{
 				"error": e,
-			})
+			}
 		},
 		Finally: func() {},
 	}.Do()
 
-	return result
+	return response
 }
