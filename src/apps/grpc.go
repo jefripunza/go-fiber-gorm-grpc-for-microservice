@@ -19,6 +19,7 @@ type server struct {
 func GrpcServer() {
 
 	// Run gRPC
+	grpc_host := configs.GetHostGrpcServer()
 	grpc_port := configs.GetPortGrpcServer()
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%v", grpc_port))
 	if err != nil {
@@ -29,7 +30,7 @@ func GrpcServer() {
 	proto.RegisterMainServiceServer(svc, &server{}) // register this gRPC with real name service
 	reflection.Register(svc)
 
-	fmt.Printf("gRPC Started at http://localhost:%v ...\n", grpc_port)
+	fmt.Printf("gRPC Started at http://%v:%v ...\n", grpc_host, grpc_port)
 	if err := svc.Serve(lis); err != nil {
 		log.Fatalf("failed to start gRPC serve: %v", err)
 	}

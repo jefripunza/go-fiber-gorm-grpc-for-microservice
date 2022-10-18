@@ -18,42 +18,34 @@ import (
 )
 
 func DatabaseConnect() *gorm.DB {
-	db_type := os.Getenv("DB_TYPE")
-	db_log := os.Getenv("DB_LOG")
 
 	var db_config *gorm.Config
-	if db_log == "true" {
-		newLogger := logger.New(
-			log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
-			logger.Config{
-				SlowThreshold:             time.Second,   // Slow SQL threshold
-				LogLevel:                  logger.Silent, // Log level
-				IgnoreRecordNotFoundError: true,          // Ignore ErrRecordNotFound error for logger
-				Colorful:                  false,         // Disable color
-			},
-		)
+	if configs.GetDatabaseLog() == "true" {
 		db_config = &gorm.Config{
-			Logger: newLogger,
+			Logger: logger.New(
+				log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
+				logger.Config{
+					SlowThreshold:             time.Second,   // Slow SQL threshold
+					LogLevel:                  logger.Silent, // Log level
+					IgnoreRecordNotFoundError: true,          // Ignore ErrRecordNotFound error for logger
+					Colorful:                  false,         // Disable color
+				},
+			),
 		}
 	} else {
 		db_config = &gorm.Config{}
 	}
 
+	db_type := configs.GetDatabaseType()
 	var connection *gorm.DB
 	var err_msg error
 	dsn := configs.DatabaseConfig()
 	if db_type == "sqlite" {
-		db, err := gorm.Open(sqlite.Open(fmt.Sprintf("%v.db", os.Getenv("DB_NAME"))), db_config)
-		connection = db
-		err_msg = err
+		connection, err_msg = gorm.Open(sqlite.Open(fmt.Sprintf("%v.db", configs.GetDatabaseName())), db_config)
 	} else if db_type == "mysql" {
-		db, err := gorm.Open(mysql.Open(dsn), db_config)
-		connection = db
-		err_msg = err
+		connection, err_msg = gorm.Open(mysql.Open(dsn), db_config)
 	} else if db_type == "postgres" {
-		db, err := gorm.Open(postgres.Open(dsn), db_config)
-		connection = db
-		err_msg = err
+		connection, err_msg = gorm.Open(postgres.Open(dsn), db_config)
 	} else {
 		panic("hey dude, database type is not found!")
 	}
@@ -67,11 +59,9 @@ func DatabaseConnect() *gorm.DB {
 }
 
 func DatabaseMigration() {
-	db_sync := os.Getenv("DB_SYNC")
-	if db_sync == "true" {
+	if configs.GetDatabaseSync() == "true" {
 		fmt.Println("Database Migrating...")
-		db := DatabaseConnect()
-		models.MigrationTables(db)
+		models.MigrationTables(DatabaseConnect())
 		fmt.Println("Migrate Success!")
 	} else {
 		fmt.Println("Database Off Migrating!")

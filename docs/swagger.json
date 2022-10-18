@@ -14,7 +14,12 @@
         },
         "version": "1.0"
     },
-    "host": "localhost:8080",
+    "host": "localhost:8082",
     "basePath": "/",
-    "paths": {}
+    "paths": {},
+    "securityDefinitions": {
+        "BasicAuth": {
+            "type": "basic"
+        }
+    }
 }

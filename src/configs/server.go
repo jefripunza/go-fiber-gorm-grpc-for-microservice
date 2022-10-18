@@ -23,3 +23,11 @@ func FiberConfig() fiber.Config {
 func GetPortWebServer() string {
 	return os.Getenv("WEBSERVER_PORT")
 }
+
+func GetBaseEndpoint() string {
+	return os.Getenv("ENDPOINT")
+}
+
+func GetEnvironmentSelect() string {
+	return os.Getenv("ENVIRONMENT")
+}

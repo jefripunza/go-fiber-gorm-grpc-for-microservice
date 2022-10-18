@@ -1,5 +1,5 @@
 basePath: /
-host: localhost:8080
+host: localhost:8082
 info:
   contact:
     email: jefriherditriyanto@gmail.com
@@ -12,4 +12,7 @@ info:
   title: GO Fiber Training
   version: "1.0"
 paths: {}
+securityDefinitions:
+  BasicAuth:
+    type: basic
 swagger: "2.0"

@@ -17,3 +17,19 @@ func DatabaseConfig() string {
 	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", db_user, db_pass, db_host, db_port, db_name)
 	return dsn
 }
+
+func GetDatabaseType() string {
+	return os.Getenv("DB_TYPE")
+}
+
+func GetDatabaseName() string {
+	return os.Getenv("DB_NAME")
+}
+
+func GetDatabaseLog() string {
+	return os.Getenv("DB_LOG")
+}
+
+func GetDatabaseSync() string {
+	return os.Getenv("DB_SYNC")
+}

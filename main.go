@@ -5,7 +5,6 @@ import (
 	"main-service/src/middlewares"
 	"main-service/src/routers"
 	"main-service/src/utils"
-	"os"
 
 	"github.com/gofiber/fiber/v2"
 
@@ -16,12 +15,16 @@ import (
 // @version 1.0
 // @description lagi belajar asik golang sampe mampus :v
 // @termsOfService http://swagger.io/terms/
+
 // @contact.name Jefri Herdi Triyanto
 // @contact.email jefriherditriyanto@gmail.com
+
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
 // @host localhost:8082
 // @BasePath /
+// @securityDefinitions.basic  BasicAuth
 func main() {
 
 	// get all value on environment
@@ -36,8 +39,8 @@ func main() {
 	middlewares.Logger(app)
 
 	// REGISTER ALL API ROUTERS
-	api := app.Group(os.Getenv("ENDPOINT"))
-	routers.Basic(api)
+	api := app.Group(configs.GetBaseEndpoint())
+	routers.Basic(api) //> Connect to gRPC Service
 	routers.Main(api)
 
 	// REQUIRE ROUTERS
