@@ -13,13 +13,13 @@ func TestBasicAdd(t *testing.T) {
 	hope := a + b
 	utils.GetEnvironment()
 	response := services.BasicAdd(uint64(a), uint64(b))
-	test1 := helpers.InterfaceToString(response.Data)
+	test1 := helpers.InterfaceToString(response.Render)
 	if helpers.StringMatch(test1, "error") {
 		t.Errorf("Hmmmm : %v\n", test1)
 	} else {
 		test2 := helpers.MapToJson(helpers.StringToByte(test1))
 		if int64(test2["result"].(float64)) == int64(hope) {
-			t.Log(response.Data)
+			t.Log(response.Render)
 		} else {
 			t.Errorf("this is not %v\n", hope)
 		}
@@ -32,13 +32,13 @@ func TestBasicMultiply(t *testing.T) {
 	hope := a * b
 	utils.GetEnvironment()
 	response := services.BasicMultiply(uint64(a), uint64(b))
-	test1 := helpers.InterfaceToString(response.Data)
+	test1 := helpers.InterfaceToString(response.Render)
 	if helpers.StringMatch(test1, "error") {
 		t.Errorf("Hmmmm : %v\n", test1)
 	} else {
 		test2 := helpers.MapToJson(helpers.StringToByte(test1))
 		if int64(test2["result"].(float64)) == int64(hope) {
-			t.Log(response.Data)
+			t.Log(response.Render)
 		} else {
 			t.Errorf("this is not %v\n", hope)
 		}

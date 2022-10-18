@@ -13,12 +13,12 @@ func BasicAdd(a uint64, b uint64) gofiber.Response {
 
 	if err_msg != nil {
 		response.Code = fiber.StatusBadRequest
-		response.Data = fiber.Map{
+		response.Render = fiber.Map{
 			"message": err_msg.Error(),
 		}
 	} else {
 		response.Code = fiber.StatusOK
-		response.Data = fiber.Map{
+		response.Render = fiber.Map{
 			"result": result,
 		}
 	}
@@ -32,12 +32,12 @@ func BasicMultiply(a uint64, b uint64) gofiber.Response {
 
 	if err_msg != nil {
 		response.Code = fiber.StatusBadRequest
-		response.Data = fiber.Map{
+		response.Render = fiber.Map{
 			"message": err_msg.Error(),
 		}
 	} else {
 		response.Code = fiber.StatusOK
-		response.Data = fiber.Map{
+		response.Render = fiber.Map{
 			"result": result,
 		}
 	}

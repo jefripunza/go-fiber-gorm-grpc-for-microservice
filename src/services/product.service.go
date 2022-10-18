@@ -18,14 +18,14 @@ func ProductCreateOne(dto *request.CreateProduct) gofiber.Response {
 		Try: func() {
 			repositories.InsertProduct(dto)
 			response.Code = fiber.StatusOK
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"message": messages.DataSaveSuccess,
 			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
 			response.Code = fiber.StatusBadRequest
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"error": e,
 			}
 		},
@@ -39,7 +39,7 @@ func ProductReadAllData() gofiber.Response {
 	var response gofiber.Response
 
 	response.Code = fiber.StatusOK
-	response.Data = fiber.Map{
+	response.Render = fiber.Map{
 		"data": repositories.ReadProducts(),
 	}
 
@@ -52,14 +52,14 @@ func ProductById(id int) gofiber.Response {
 	handlers.Error{
 		Try: func() {
 			response.Code = fiber.StatusOK
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"data": repositories.ReadProductById(id),
 			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
 			response.Code = fiber.StatusBadRequest
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"error": e,
 			}
 		},
@@ -75,14 +75,14 @@ func ProductByCode(code string) gofiber.Response {
 	handlers.Error{
 		Try: func() {
 			response.Code = fiber.StatusOK
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"data": repositories.ReadProductByCode(code),
 			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
 			response.Code = fiber.StatusBadRequest
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"error": e,
 			}
 		},
@@ -99,14 +99,14 @@ func ProductUpdateById(dto *request.UpdateProduct) gofiber.Response {
 		Try: func() {
 			repositories.UpdateProduct(dto)
 			response.Code = fiber.StatusOK
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"message": messages.DataUpdateSuccess,
 			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
 			response.Code = fiber.StatusBadRequest
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"error": e,
 			}
 		},
@@ -123,14 +123,14 @@ func ProductDeleteById(id int) gofiber.Response {
 		Try: func() {
 			repositories.DeleteProductById(id)
 			response.Code = fiber.StatusOK
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"message": messages.DataDeleteSuccess,
 			}
 		},
 		Catch: func(e handlers.Exception) {
 			fmt.Printf("Caught error : %v\n", e)
 			response.Code = fiber.StatusBadRequest
-			response.Data = fiber.Map{
+			response.Render = fiber.Map{
 				"error": e,
 			}
 		},
