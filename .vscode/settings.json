@@ -22,7 +22,8 @@
     "editor.defaultFormatter": "zxh404.vscode-proto3"
   },
   "files.associations": {
-    ".env*": "properties"
+    ".env*": "properties",
+    ".rabbitmq*": "properties"
   },
   "[go]": {
     "editor.defaultFormatter": "golang.go"

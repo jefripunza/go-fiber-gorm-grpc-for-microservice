@@ -12,25 +12,23 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-type server struct {
+type GrpcHooks struct {
 	proto.UnimplementedMainServiceServer // server gRPC sekarang
 }
 
 func GrpcServer() {
 
 	// Run gRPC
-	grpc_host := configs.GetHostGrpcServer()
-	grpc_port := configs.GetPortGrpcServer()
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%v", grpc_port))
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%v", configs.GrpcPort))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
 	svc := grpc.NewServer()
-	proto.RegisterMainServiceServer(svc, &server{}) // register this gRPC with real name service
+	proto.RegisterMainServiceServer(svc, &GrpcHooks{}) // register this gRPC with real name service
 	reflection.Register(svc)
 
-	fmt.Printf("gRPC Started at http://%v:%v ...\n", grpc_host, grpc_port)
+	fmt.Printf("gRPC Started at http://%v:%v ...\n", configs.GrpcHost, configs.GrpcPort)
 	if err := svc.Serve(lis); err != nil {
 		log.Fatalf("failed to start gRPC serve: %v", err)
 	}
@@ -40,7 +38,7 @@ func GrpcServer() {
 // ===========================================================
 //-> Titipan Function
 
-func (s *server) Detail(_ context.Context, request *proto.ResponseMain) (*proto.ResponseMain, error) {
+func (s *GrpcHooks) Detail(_ context.Context, request *proto.ResponseMain) (*proto.ResponseMain, error) {
 	// your logic from gRPC request
 	return &proto.ResponseMain{
 		Id:          request.GetId(),

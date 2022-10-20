@@ -5,31 +5,19 @@ import (
 	"os"
 )
 
+var (
+	DbType = os.Getenv("DB_TYPE")
+	DbHost = os.Getenv("DB_HOST")
+	DbPort = os.Getenv("DB_PORT")
+	DbUser = os.Getenv("DB_USER")
+	DbPass = os.Getenv("DB_PASS")
+	DbName = os.Getenv("DB_NAME")
+
+	DbLog  = os.Getenv("DB_LOG")
+	DbSync = os.Getenv("DB_SYNC")
+)
+
 func DatabaseConfig() string {
-	// get all env database
-	db_host := os.Getenv("DB_HOST")
-	db_port := os.Getenv("DB_PORT")
-	db_user := os.Getenv("DB_USER")
-	db_pass := os.Getenv("DB_PASS")
-	db_name := os.Getenv("DB_NAME")
-
 	// refer https://github.com/go-sql-driver/mysql#dsn-data-source-name for details
-	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", db_user, db_pass, db_host, db_port, db_name)
-	return dsn
-}
-
-func GetDatabaseType() string {
-	return os.Getenv("DB_TYPE")
-}
-
-func GetDatabaseName() string {
-	return os.Getenv("DB_NAME")
-}
-
-func GetDatabaseLog() string {
-	return os.Getenv("DB_LOG")
-}
-
-func GetDatabaseSync() string {
-	return os.Getenv("DB_SYNC")
+	return fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", DbUser, DbPass, DbHost, DbPort, DbName)
 }

@@ -54,6 +54,6 @@ func main() {
 	//-> Execute all Apps
 	run.WebServer(app)
 	run.DatabaseMigration() // activate in .env > DB_SYNC
-	run.GrpcServer()
+	run.GrpcServer()        // ending...
 
 }

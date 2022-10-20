@@ -60,7 +60,7 @@ const docTemplate = `{
                         }
                     },
                     "400": {
-                        "description": "code harus di isi !!, body is still missing",
+                        "description": "(code harus di isi !!) (harga harus lebih dari 0 !!)",
                         "schema": {
                             "$ref": "#/definitions/response.ProductAdd400"
                         }
