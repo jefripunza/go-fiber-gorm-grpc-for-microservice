@@ -6,37 +6,40 @@
 
 ## Structure Directory of System
 
-| Name         | Path              | Description                                                                                                     | In Generate |
-|--------------|-------------------|-----------------------------------------------------------------------------------------------------------------|:-----------:|
-| docs         | /docs             | hasil generate dari **swagger** (swag init)                                                                     |      ✅      |
-| proto        | /proto            | hasil generate dari protoc, menyimpan file **protobuf** dan juga generate nya                                   |      ✅      |
-| apps         | /src/apps         | semua **Ready App** dari **Server, Database, gRPC server, Redis, RabbitMQ, WebSocket**                          |      ❌      |
-| configs      | /src/configs      | cara/method pengambilan value dari **.env**                                                                     |      ❌      |
-| controllers  | /src/controllers  | handling request (api) value nya apa saja/type                                                                  |      ❌      |
-| dto          | /src/dto          | **(data transfer object)** management format request & response                                                 |      ❌      |
-| handlers     | /src/handlers     | membuat method handler seperti **try catch** dan lain2...                                                       |      ❌      |
-| helpers      | /src/helpers      | menampung semua logic kebutuhan yang bisa di **reusable**                                                       |      ❌      |
-| messages     | /src/messages     | **format penulisan** apapun (semua) sehingga jika ada perubahan (text) tinggal rubah 1x saja                    |      ❌      |
-| middlewares  | /src/middlewares  | **jembatan logic** sebelum masuk ke **logic utama**, biasanya seperti **token validation** atau yang lainnya... |      ❌      |
-| entities     | /src/entities     | schema tables digunakan untuk **validasi table database** dan **migration table**                               |      ❌      |
-| repositories | /src/repositories | logic khusus untuk pengolahan database (insert, read, update, delete)                                           |      ❌      |
-| remotes      | /src/remotes      | function pengambilan data dari gRPC service lain (communications)                                               |      ❌      |
-| routers      | /src/routers      | tempat routing endpoint url (api) dan juga pemasangan middleware                                                |      ❌      |
-| services     | /src/services     | tempat **logic utama** dari service ini (logic utama hanya boleh disini)                                        |      ❌      |
-| utils        | /src/utils        | method penting yang sangat digunakan dan bisa saja reusable                                                     |      ❌      |
+| Name         | Path        | Description                                                                                                     | Generate  |
+|--------------|-------------|-----------------------------------------------------------------------------------------------------------------|:---------:|
+| docs         | /           | hasil generate dari **swagger** (swag init)                                                                     |  ✅ auto   |
+| proto        | /           | hasil generate dari protoc, menyimpan file **protobuf** dan juga generate nya                                   |  ✅ auto   |
+| apps         | /src        | semua **Ready App** dari **Server, Database, gRPC server, Redis, RabbitMQ, WebSocket**                          |     ❌     |
+| configs      | /src        | cara/method pengambilan value dari **.env**                                                                     |     ❌     |
+| consumer     | /src        | listening RabbitMQ Queue                                                                                        | ✅ organic |
+| controllers  | /src        | handling request (api) value nya apa saja/type                                                                  | ✅ organic |
+| dto          | /src        | **(data transfer object)** management format request & response                                                 | ✅ organic |
+| handlers     | /src        | membuat method handler seperti **try catch** dan lain2...                                                       |     ❌     |
+| helpers      | /src        | menampung semua logic kebutuhan yang bisa di **reusable**                                                       |     ❌     |
+| messages     | /src        | **format penulisan** apapun (semua) sehingga jika ada perubahan (text) tinggal rubah 1x saja                    | ✅ organic |
+| middlewares  | /src        | **jembatan logic** sebelum masuk ke **logic utama**, biasanya seperti **token validation** atau yang lainnya... | ✅ organic |
+| entities     | /src/models | schema tables digunakan untuk **validasi table database** dan **migration table**                               | ✅ organic |
+| repositories | /src/models | logic khusus untuk pengolahan database (insert, read, update, delete)                                           | ✅ organic |
+| remotes      | /src        | function pengambilan data dari gRPC service lain (communications)                                               | ✅ organic |
+| routers      | /src        | tempat routing endpoint url (api) dan juga pemasangan middleware                                                | ✅ organic |
+| services     | /src        | tempat **logic utama** dari service ini (logic utama hanya boleh disini)                                        | ✅ organic |
+| utils        | /src        | method penting yang sangat digunakan dan bisa saja reusable                                                     |     ❌     |
+| tests        | /           | tempat **unit test** logic dari services                                                                        | ✅ organic |
 
 ---
 
 ## Files Information
 
-| Name                         | Extension    | Path   | Description                                                        |
-|------------------------------|--------------|--------|--------------------------------------------------------------------|
-| swagger                      | .json, .yaml | /docs  | untuk dokumentasi API                                              |
-| proto                        | .proto       | /proto | schema protobuf untuk komunikasi gRPC                              |
-| environment (select)         | .env         | /      | untuk memilih sekarang ini environment apa                         |
-| environment (value)          | .env.*       | /      | isi variable yang ingin di expose                                  |
-| package.json script (nodejs) | .json        | /      | untuk menyimpan segala format execute biar mempermudah development |
-| database (sqlite)            | .db          | /      | file database lokal (file)                                         |
+| Name                            | Extension    | Path        | Description                                                        |
+|---------------------------------|--------------|-------------|--------------------------------------------------------------------|
+| swagger                         | .json, .yaml | /docs       | untuk dokumentasi API                                              |
+| proto                           | .proto       | /proto      | schema protobuf untuk komunikasi gRPC                              |
+| migration table (migrations.go) | .go          | /src/models | otomatis sync table yang teregistrasi                              |
+| environment (select)            | .env         | /           | untuk memilih sekarang ini environment apa                         |
+| environment (value)             | .env.*       | /           | isi variable yang ingin di expose                                  |
+| database (sqlite)               | .db          | /           | file database lokal (file)                                         |
+| package.json script (nodejs)    | .json        | /           | untuk menyimpan segala format execute biar mempermudah development |
 
 ---
 
