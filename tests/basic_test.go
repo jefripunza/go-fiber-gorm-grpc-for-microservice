@@ -3,7 +3,7 @@ package tests
 import (
 	"main-service/src/helpers"
 	"main-service/src/services"
-	"main-service/src/utils"
+	"main-service/src/utils/environment"
 	"testing"
 )
 
@@ -11,7 +11,7 @@ func TestBasicAdd(t *testing.T) {
 	a, b := 6, 3 // change this value
 
 	hope := a + b
-	utils.GetEnvironment()
+	environment.Get()
 	response := services.BasicAdd(uint64(a), uint64(b))
 	test1 := helpers.InterfaceToString(response.Render)
 	if helpers.StringMatch(test1, "error") {
@@ -30,7 +30,7 @@ func TestBasicMultiply(t *testing.T) {
 	a, b := 6, 3 // change this value
 
 	hope := a * b
-	utils.GetEnvironment()
+	environment.Get()
 	response := services.BasicMultiply(uint64(a), uint64(b))
 	test1 := helpers.InterfaceToString(response.Render)
 	if helpers.StringMatch(test1, "error") {

@@ -20,7 +20,7 @@ import (
 func DatabaseConnect() *gorm.DB {
 
 	var db_config *gorm.Config
-	if configs.DbLog == "true" {
+	if configs.DbLog() == "true" {
 		db_config = &gorm.Config{
 			Logger: logger.New(
 				log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
@@ -36,12 +36,12 @@ func DatabaseConnect() *gorm.DB {
 		db_config = &gorm.Config{}
 	}
 
-	db_type := configs.DbType
+	db_type := configs.DbType()
 	var connection *gorm.DB
 	var err_msg error
 	dsn := configs.DatabaseConfig()
 	if db_type == "sqlite" {
-		connection, err_msg = gorm.Open(sqlite.Open(fmt.Sprintf("%v.db", configs.DbName)), db_config)
+		connection, err_msg = gorm.Open(sqlite.Open(fmt.Sprintf("%v.db", configs.DbName())), db_config)
 	} else if db_type == "mysql" {
 		connection, err_msg = gorm.Open(mysql.Open(dsn), db_config)
 	} else if db_type == "postgres" {
@@ -59,7 +59,7 @@ func DatabaseConnect() *gorm.DB {
 }
 
 func DatabaseMigration() {
-	if configs.DbSync == "true" {
+	if configs.DbSync() == "true" {
 		fmt.Println("Database Migrating...")
 		models.MigrationTables(DatabaseConnect())
 		fmt.Println("Migrate Success!")

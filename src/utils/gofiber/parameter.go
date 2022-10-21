@@ -39,3 +39,7 @@ func GetParameterInteger(c *fiber.Ctx, name string) (int, error) {
 func GetParameterString(c *fiber.Ctx, name string) string {
 	return c.Params(name)
 }
+
+func GetQueryString(c *fiber.Ctx, name string) string {
+	return c.Query(name)
+}

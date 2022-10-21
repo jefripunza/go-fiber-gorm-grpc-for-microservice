@@ -2,7 +2,9 @@ package configs
 
 import "os"
 
-var (
-	GrpcHost = os.Getenv("GRPC_HOST")
-	GrpcPort = os.Getenv("GRPC_PORT")
-)
+func GrpcHost() string {
+	return os.Getenv("GRPC_HOST")
+}
+func GrpcPort() string {
+	return os.Getenv("GRPC_PORT")
+}

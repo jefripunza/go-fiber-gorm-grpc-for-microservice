@@ -5,9 +5,9 @@ import (
 )
 
 // NotFoundRoute func for describe 404 Error route.
-func NotFound(a *fiber.App) {
+func NotFound(app *fiber.App) {
 	// Register new special route.
-	a.Use(
+	app.Use(
 		// Anonymous function.
 		func(c *fiber.Ctx) error {
 			method := c.Method()

@@ -2,6 +2,6 @@ package configs
 
 import "os"
 
-var (
-	RabbitURL = os.Getenv("RABBIT_URL")
-)
+func RabbitURL() string {
+	return os.Getenv("RABBIT_URL")
+}

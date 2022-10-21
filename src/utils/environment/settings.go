@@ -1,4 +1,4 @@
-package utils
+package environment
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func GetEnvironment() {
+func Get() {
 	env := ".env"
 	if err1 := godotenv.Load(env); err1 != nil {
 		env = "../.env"

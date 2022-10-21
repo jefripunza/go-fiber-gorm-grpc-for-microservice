@@ -17,9 +17,10 @@ type GrpcHooks struct {
 }
 
 func GrpcServer() {
+	grpc_port := configs.GrpcPort()
 
 	// Run gRPC
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%v", configs.GrpcPort))
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%v", grpc_port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -28,7 +29,7 @@ func GrpcServer() {
 	proto.RegisterMainServiceServer(svc, &GrpcHooks{}) // register this gRPC with real name service
 	reflection.Register(svc)
 
-	fmt.Printf("gRPC Started at http://%v:%v ...\n", configs.GrpcHost, configs.GrpcPort)
+	fmt.Printf("gRPC Started at http://%v:%v ...\n", configs.GrpcHost(), grpc_port)
 	if err := svc.Serve(lis); err != nil {
 		log.Fatalf("failed to start gRPC serve: %v", err)
 	}

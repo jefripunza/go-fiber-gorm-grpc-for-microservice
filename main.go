@@ -2,9 +2,10 @@ package main
 
 import (
 	"main-service/src/configs"
+	"main-service/src/consumer"
 	"main-service/src/middlewares"
 	"main-service/src/routers"
-	"main-service/src/utils"
+	"main-service/src/utils/environment"
 
 	"github.com/gofiber/fiber/v2"
 
@@ -31,7 +32,8 @@ import (
 func main() {
 
 	// get all value on environment
-	utils.GetEnvironment()
+	environment.Get()
+	environment.RabbitMQ() // if use RabbitMQ
 
 	// Define Fiber config.
 	config := configs.FiberConfig()
@@ -41,12 +43,20 @@ func main() {
 	middlewares.Cors(app)
 	middlewares.Logger(app)
 
-	// REGISTER ALL API ROUTERS
+	//==========================================================//
+
+	// Register All API Routers
 	api := app.Group(configs.GetBaseEndpoint())
 	routers.Basic(api) //> Connect to gRPC Service
+	routers.RabbitMQ(api)
 	routers.Products(api)
 
-	// REQUIRE ROUTERS
+	// Register All Consumer RabbitMQ (if use)
+	consumer.Example()
+
+	//==========================================================//
+
+	//-> Require Routers
 	routers.Index(app)
 	routers.Swagger(app)
 	routers.NotFound(app)
