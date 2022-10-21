@@ -38,8 +38,10 @@
 | migration table (migrations.go) | .go          | /src/models | otomatis sync table yang teregistrasi                              |
 | environment (select)            | .env         | /           | untuk memilih sekarang ini environment apa                         |
 | environment (value)             | .env.*       | /           | isi variable yang ingin di expose                                  |
+| rabbitmq value                  | .rabbitmq.*  | /           | list exchange & queue value                                        |
 | database (sqlite)               | .db          | /           | file database lokal (file)                                         |
 | package.json script (nodejs)    | .json        | /           | untuk menyimpan segala format execute biar mempermudah development |
+| OVVBT CLI App (./ovvbt)         | -            | /           | aplikasi cli untuk membantu dalam mempercepat development          |
 
 ---
 
