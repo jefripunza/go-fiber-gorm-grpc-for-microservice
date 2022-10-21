@@ -19,8 +19,12 @@ import (
 
 func DatabaseConnect() *gorm.DB {
 
+	db_log := configs.DbLog()
+	db_type := configs.DbType()
+	dsn := configs.DatabaseConfig()
+
 	var db_config *gorm.Config
-	if configs.DbLog() == "true" {
+	if db_log == "true" {
 		db_config = &gorm.Config{
 			Logger: logger.New(
 				log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
@@ -36,10 +40,8 @@ func DatabaseConnect() *gorm.DB {
 		db_config = &gorm.Config{}
 	}
 
-	db_type := configs.DbType()
 	var connection *gorm.DB
 	var err_msg error
-	dsn := configs.DatabaseConfig()
 	if db_type == "sqlite" {
 		connection, err_msg = gorm.Open(sqlite.Open(fmt.Sprintf("%v.db", configs.DbName())), db_config)
 	} else if db_type == "mysql" {
@@ -55,7 +57,12 @@ func DatabaseConnect() *gorm.DB {
 		panic("failed to Database database")
 	}
 
-	return connection
+	if db_log == "true" {
+		return connection.Debug()
+	} else {
+		return connection
+	}
+
 }
 
 func DatabaseMigration() {

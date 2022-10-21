@@ -12,9 +12,9 @@ import (
 // Example : https://gorm.io/docs/query.html
 
 // Create
-func InsertProduct(data *request.CreateProduct) *gorm.DB {
+func InsertProducts(data *request.CreateProduct) *gorm.DB {
 	db := apps.DatabaseConnect()
-	result := db.Debug().Table("products").Create(&entities.Products{Code: data.Code, Price: data.Price})
+	result := db.Table("products").Create(&entities.Products{Code: data.Code, Price: data.Price})
 	if result.Error != nil {
 		panic(result.Error)
 	}
@@ -25,22 +25,22 @@ func InsertProduct(data *request.CreateProduct) *gorm.DB {
 func ReadProducts() []response.ReadProducts {
 	db := apps.DatabaseConnect()
 	var products []response.ReadProducts
-	db.Debug().Table("products").Order("id desc").Find(&products)
+	db.Table("products").Order("id desc").Find(&products)
 	return products
 }
-func ReadProductById(id int) entities.Products {
+func ReadProductsById(id int) entities.Products {
 	db := apps.DatabaseConnect()
 	var products entities.Products
-	result := db.Debug().Table("products").First(&products, id)
+	result := db.Table("products").First(&products, id)
 	if result.Error != nil {
 		panic(result.Error)
 	}
 	return products
 }
-func ReadProductByCode(code string) entities.Products {
+func ReadProductsByCode(code string) entities.Products {
 	db := apps.DatabaseConnect()
 	var products entities.Products
-	result := db.Debug().Table("products").Order("id desc").First(&products, "code = ?", code)
+	result := db.Table("products").Order("id desc").First(&products, "code = ?", code)
 	if result.Error != nil {
 		panic(result.Error)
 	}
@@ -48,20 +48,20 @@ func ReadProductByCode(code string) entities.Products {
 }
 
 // Update
-func UpdateProduct(data *request.UpdateProduct) {
+func UpdateProducts(data *request.UpdateProduct) {
 	db := apps.DatabaseConnect()
 	var products entities.Products
-	result := db.Debug().Table("products").Model(&products).Where("id = ?", data.ID).Updates(entities.Products{Price: data.Price, Code: data.Code})
+	result := db.Table("products").Model(&products).Where("id = ?", data.ID).Updates(entities.Products{Price: data.Price, Code: data.Code})
 	if result.Error != nil {
 		panic(result.Error)
 	}
 }
 
 // Delete
-func DeleteProductById(id int) {
+func DeleteProductsById(id int) {
 	db := apps.DatabaseConnect()
 	var products entities.Products
-	result := db.Debug().Table("products").Delete(&products, id)
+	result := db.Table("products").Delete(&products, id)
 	if result.Error != nil {
 		panic(result.Error)
 	}

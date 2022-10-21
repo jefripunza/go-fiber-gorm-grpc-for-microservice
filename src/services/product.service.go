@@ -16,7 +16,7 @@ func ProductCreateOne(dto *request.CreateProduct) gofiber.Response {
 
 	handlers.Error{
 		Try: func() {
-			repositories.InsertProduct(dto)
+			repositories.InsertProducts(dto)
 			response.Code = fiber.StatusOK
 			response.Render = fiber.Map{
 				"message": messages.DataSaveSuccess,
@@ -53,7 +53,7 @@ func ProductById(id int) gofiber.Response {
 		Try: func() {
 			response.Code = fiber.StatusOK
 			response.Render = fiber.Map{
-				"data": repositories.ReadProductById(id),
+				"data": repositories.ReadProductsById(id),
 			}
 		},
 		Catch: func(e handlers.Exception) {
@@ -76,7 +76,7 @@ func ProductByCode(code string) gofiber.Response {
 		Try: func() {
 			response.Code = fiber.StatusOK
 			response.Render = fiber.Map{
-				"data": repositories.ReadProductByCode(code),
+				"data": repositories.ReadProductsByCode(code),
 			}
 		},
 		Catch: func(e handlers.Exception) {
@@ -97,7 +97,7 @@ func ProductUpdateById(dto *request.UpdateProduct) gofiber.Response {
 
 	handlers.Error{
 		Try: func() {
-			repositories.UpdateProduct(dto)
+			repositories.UpdateProducts(dto)
 			response.Code = fiber.StatusOK
 			response.Render = fiber.Map{
 				"message": messages.DataUpdateSuccess,
@@ -121,7 +121,7 @@ func ProductDeleteById(id int) gofiber.Response {
 
 	handlers.Error{
 		Try: func() {
-			repositories.DeleteProductById(id)
+			repositories.DeleteProductsById(id)
 			response.Code = fiber.StatusOK
 			response.Render = fiber.Map{
 				"message": messages.DataDeleteSuccess,

@@ -8,7 +8,6 @@ import (
 )
 
 func BasicAdd(c *fiber.Ctx) error {
-	// Check, if received JSON data is valid.
 	a, err_a := gofiber.GetParameterUnsignedInteger(c, "a")
 	if err_a != nil {
 		return err_a
@@ -21,7 +20,6 @@ func BasicAdd(c *fiber.Ctx) error {
 }
 
 func BasicMultiply(c *fiber.Ctx) error {
-	// Check, if received JSON data is valid.
 	a, err_a := gofiber.GetParameterUnsignedInteger(c, "a")
 	if err_a != nil {
 		return err_a

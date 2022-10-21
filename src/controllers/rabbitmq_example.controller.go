@@ -8,7 +8,6 @@ import (
 )
 
 func RabbitExample(c *fiber.Ctx) error {
-	// Check, if received JSON data is valid.
 	msg := gofiber.GetQueryString(c, "msg")
 	return gofiber.ResponseService(c, services.RabbitExample(msg))
 }
