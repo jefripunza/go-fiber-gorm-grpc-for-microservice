@@ -1,6 +1,6 @@
 node_modules
 yarn.lock
-main_service.db
+*.db
 
 __debug_bin.exe
 vendor
