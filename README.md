@@ -79,7 +79,12 @@ go-fiber-gorm-grpc-for-microservice
 
 ## How to Use
 
-1. install Docker Desktop or Docker (whatever)
+1. clone project ini...
+2. install development require...
+```bash
+go mod tidy
+```
+1. install [Docker Desktop or Docker](https://www.docker.com/) (whatever)
 2. open/running Docker
 3. install require...
 ```bash
