@@ -80,6 +80,9 @@ go-fiber-gorm-grpc-for-microservice
 ## How to Use
 
 1. clone project ini...
+```bash
+git clone https://github.com/jefripunza/go-fiber-gorm-grpc-for-microservice.git main-service
+```
 2. install development require...
 ```bash
 go mod tidy
