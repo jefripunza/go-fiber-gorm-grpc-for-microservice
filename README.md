@@ -81,7 +81,14 @@ go-fiber-gorm-grpc-for-microservice
 
 1. clone project ini...
 ```bash
+// api-gateway
+git clone https://github.com/jefripunza/nginx-load-balance-microservice.git api-gateway
+
+// main-service
 git clone https://github.com/jefripunza/go-fiber-gorm-grpc-for-microservice.git main-service
+
+// grpc-basic-service
+git clone https://github.com/jefripunza/example-grpc-basic-service grpc-basic-service
 ```
 2. install development require...
 ```bash
@@ -103,18 +110,14 @@ go mod tidy
 - create queue "example-testing-queue"
 - binding queue to exchange
 ```
-8. create container :
+8. create container/image di semua folder :
 ```bash
 docker-compose up -d
 ```
-9. create all container microservices testing (link bellow)
 
 ---
 
-## Clone All Microservices Testing
-
-- [Api Gateway](https://github.com/jefripunza/nginx-load-balance-microservice.git)
-- [gRPC Basic Service](https://github.com/jefripunza/example-grpc-basic-service.git)
+## Microservices Schemas
 
 ![Schemas Routing (diagram)](git_assets/schema.jpg)
 
