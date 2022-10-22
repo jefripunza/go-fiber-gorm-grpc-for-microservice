@@ -84,15 +84,15 @@ go-fiber-gorm-grpc-for-microservice
 ```bash
 go mod tidy
 ```
-1. install [Docker Desktop or Docker](https://www.docker.com/) (whatever)
-2. open/running Docker
-3. install require...
+3. install [Docker Desktop or Docker](https://www.docker.com/) (whatever)
+4. open/running Docker
+5. install require...
 ```bash
 // RabbitMQ (docker)
 ./ovvbt install rabbitmq
 ```
-4. pastikan RabbitMQ (docker) sudah berjalan
-5. setup RabbitMQ...
+6. pastikan RabbitMQ (docker) sudah berjalan
+7. setup RabbitMQ...
 ```
 - akses -> http://localhost:15672/
 - credential -> user:guest pass:guest
@@ -100,11 +100,11 @@ go mod tidy
 - create queue "example-testing-queue"
 - binding queue to exchange
 ```
-6. create container :
+8. create container :
 ```bash
 docker-compose up -d
 ```
-7. create all container microservices testing (link bellow)
+9. create all container microservices testing (link bellow)
 
 ---
 
