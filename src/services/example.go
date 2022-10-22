@@ -1,7 +1,7 @@
 package services
 
 import (
-	"main-service/src/utils/gofiber"
+	"microservice/src/utils/gofiber"
 
 	"github.com/gofiber/fiber/v2"
 )

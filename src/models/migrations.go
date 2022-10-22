@@ -1,7 +1,7 @@
 package models
 
 import (
-	"main-service/src/models/entities"
+	"microservice/src/models/entities"
 
 	"gorm.io/gorm"
 )

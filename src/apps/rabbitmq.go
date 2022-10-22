@@ -1,7 +1,7 @@
 package apps
 
 import (
-	"main-service/src/configs"
+	"microservice/src/configs"
 
 	"github.com/streadway/amqp"
 )

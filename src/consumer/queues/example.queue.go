@@ -2,8 +2,8 @@ package queues
 
 import (
 	"log"
-	"main-service/src/configs"
-	"main-service/src/utils/rabbitmq"
+	"microservice/src/configs"
+	"microservice/src/utils/rabbitmq"
 	"time"
 )
 

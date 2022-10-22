@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"main-service/proto"
-	"main-service/src/configs"
+	"microservice/proto"
+	"microservice/src/configs"
 	"net"
 	"time"
 

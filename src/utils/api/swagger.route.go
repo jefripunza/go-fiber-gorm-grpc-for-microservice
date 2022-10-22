@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/gofiber/fiber/v2"
 
-	_ "main-service/docs"
+	_ "microservice/docs"
 
 	swagger "github.com/arsmn/fiber-swagger/v2"
 )

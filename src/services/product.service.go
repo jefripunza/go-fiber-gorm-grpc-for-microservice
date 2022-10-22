@@ -2,11 +2,11 @@ package services
 
 import (
 	"fmt"
-	"main-service/src/dto/request"
-	"main-service/src/messages"
-	"main-service/src/models/repositories"
-	"main-service/src/utils/gofiber"
-	"main-service/src/utils/handlers"
+	"microservice/src/dto/request"
+	"microservice/src/messages"
+	"microservice/src/models/repositories"
+	"microservice/src/utils/gofiber"
+	"microservice/src/utils/handlers"
 
 	"github.com/gofiber/fiber/v2"
 )

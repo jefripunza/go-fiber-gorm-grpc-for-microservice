@@ -1,17 +1,17 @@
 package main
 
 import (
-	"main-service/src/configs"
-	"main-service/src/consumer"
-	"main-service/src/middlewares"
-	"main-service/src/routers"
-	"main-service/src/scheduler"
-	"main-service/src/utils/api"
-	"main-service/src/utils/environment"
+	"microservice/src/configs"
+	"microservice/src/consumer"
+	"microservice/src/middlewares"
+	"microservice/src/routers"
+	"microservice/src/scheduler"
+	"microservice/src/utils/api"
+	"microservice/src/utils/environment"
 
 	"github.com/gofiber/fiber/v2"
 
-	run "main-service/src/apps"
+	run "microservice/src/apps"
 )
 
 // @title GO Fiber Training

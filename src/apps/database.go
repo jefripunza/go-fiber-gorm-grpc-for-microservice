@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"main-service/src/configs"
-	"main-service/src/models"
+	"microservice/src/configs"
+	"microservice/src/models"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"

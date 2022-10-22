@@ -1,8 +1,8 @@
 package routers
 
 import (
-	"main-service/src/configs"
-	"main-service/src/routers/endpoints"
+	"microservice/src/configs"
+	"microservice/src/routers/endpoints"
 
 	"github.com/gofiber/fiber/v2"
 )

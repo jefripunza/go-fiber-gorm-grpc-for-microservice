@@ -3,7 +3,7 @@ package rabbitmq
 import (
 	"fmt"
 	"log"
-	"main-service/src/apps"
+	"microservice/src/apps"
 
 	"github.com/streadway/amqp"
 )

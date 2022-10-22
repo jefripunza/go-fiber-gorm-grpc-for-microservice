@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"main-service/src/dto/request"
-	"main-service/src/helpers"
-	"main-service/src/services"
-	"main-service/src/utils/gofiber"
+	"microservice/src/dto/request"
+	"microservice/src/helpers"
+	"microservice/src/services"
+	"microservice/src/utils/gofiber"
 
 	"github.com/gofiber/fiber/v2"
 )

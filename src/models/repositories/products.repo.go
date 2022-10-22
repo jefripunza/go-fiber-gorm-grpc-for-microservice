@@ -1,10 +1,10 @@
 package repositories
 
 import (
-	"main-service/src/apps"
-	"main-service/src/dto/request"
-	"main-service/src/dto/response"
-	"main-service/src/models/entities"
+	"microservice/src/apps"
+	"microservice/src/dto/request"
+	"microservice/src/dto/response"
+	"microservice/src/models/entities"
 
 	"gorm.io/gorm"
 )

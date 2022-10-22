@@ -1,7 +1,7 @@
 package scheduler
 
 import (
-	"main-service/src/scheduler/tasks"
+	"microservice/src/scheduler/tasks"
 	"time"
 
 	"github.com/go-co-op/gocron"

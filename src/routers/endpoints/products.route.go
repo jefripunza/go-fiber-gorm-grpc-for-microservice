@@ -3,7 +3,7 @@ package endpoints
 import (
 	"github.com/gofiber/fiber/v2"
 
-	"main-service/src/controllers"
+	"microservice/src/controllers"
 )
 
 func Products(route fiber.Router) {

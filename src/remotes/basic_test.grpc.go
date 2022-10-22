@@ -2,8 +2,8 @@ package remotes
 
 import (
 	"context"
-	"main-service/proto"
-	"main-service/src/utils/remote"
+	"microservice/proto"
+	"microservice/src/utils/remote"
 )
 
 func BasicAdd(a uint64, b uint64) (int64, error) {

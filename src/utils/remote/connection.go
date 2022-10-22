@@ -2,7 +2,7 @@ package remote
 
 import (
 	"fmt"
-	"main-service/src/configs"
+	"microservice/src/configs"
 	"os"
 
 	"google.golang.org/grpc"

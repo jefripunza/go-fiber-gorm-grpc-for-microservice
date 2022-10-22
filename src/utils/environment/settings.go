@@ -2,7 +2,7 @@ package environment
 
 import (
 	"fmt"
-	"main-service/src/configs"
+	"microservice/src/configs"
 	"os"
 
 	"github.com/joho/godotenv"

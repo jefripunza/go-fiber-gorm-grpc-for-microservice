@@ -1,7 +1,7 @@
 package endpoints
 
 import (
-	"main-service/src/controllers"
+	"microservice/src/controllers"
 
 	"github.com/gofiber/fiber/v2"
 )

@@ -1,7 +1,7 @@
 package rabbitmq
 
 import (
-	"main-service/src/apps"
+	"microservice/src/apps"
 
 	"github.com/streadway/amqp"
 )

@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"main-service/src/services"
-	"main-service/src/utils/gofiber"
+	"microservice/src/services"
+	"microservice/src/utils/gofiber"
 
 	"github.com/gofiber/fiber/v2"
 )

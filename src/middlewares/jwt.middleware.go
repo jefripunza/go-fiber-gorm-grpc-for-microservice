@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"main-service/src/configs"
-	"main-service/src/messages"
+	"microservice/src/configs"
+	"microservice/src/messages"
 
 	"github.com/gofiber/fiber/v2"
 

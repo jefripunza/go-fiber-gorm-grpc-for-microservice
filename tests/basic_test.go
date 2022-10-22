@@ -1,9 +1,9 @@
 package tests
 
 import (
-	"main-service/src/helpers"
-	"main-service/src/services"
-	"main-service/src/utils/environment"
+	"microservice/src/helpers"
+	"microservice/src/services"
+	"microservice/src/utils/environment"
 	"testing"
 )
 

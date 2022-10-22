@@ -1,6 +1,6 @@
 package consumer
 
-import "main-service/src/consumer/queues"
+import "microservice/src/consumer/queues"
 
 func Register() {
 

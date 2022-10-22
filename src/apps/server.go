@@ -3,7 +3,7 @@ package apps
 import (
 	"fmt"
 	"log"
-	"main-service/src/configs"
+	"microservice/src/configs"
 
 	"github.com/gofiber/fiber/v2"
 )

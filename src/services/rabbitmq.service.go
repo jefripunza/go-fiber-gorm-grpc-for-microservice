@@ -2,9 +2,9 @@ package services
 
 import (
 	"fmt"
-	"main-service/src/configs"
-	"main-service/src/utils/gofiber"
-	"main-service/src/utils/rabbitmq"
+	"microservice/src/configs"
+	"microservice/src/utils/gofiber"
+	"microservice/src/utils/rabbitmq"
 
 	"github.com/gofiber/fiber/v2"
 )
