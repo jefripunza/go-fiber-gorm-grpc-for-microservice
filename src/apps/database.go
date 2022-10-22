@@ -66,11 +66,16 @@ func DatabaseConnect() *gorm.DB {
 }
 
 func DatabaseMigration() {
-	if configs.DbSync() == "true" {
-		fmt.Println("Database Migrating...")
-		models.MigrationTables(DatabaseConnect())
-		fmt.Println("Migrate Success!")
-	} else {
-		fmt.Println("Database Off Migrating!")
-	}
+
+	go func() {
+		time.Sleep(22)
+		if configs.DbSync() == "true" {
+			fmt.Println("Database Migrating...")
+			models.MigrationTables(DatabaseConnect())
+			fmt.Println("Migrate Success!")
+		} else {
+			fmt.Println("Database Off Migrating!")
+		}
+	}()
+
 }

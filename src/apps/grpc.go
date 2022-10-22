@@ -7,6 +7,7 @@ import (
 	"main-service/proto"
 	"main-service/src/configs"
 	"net"
+	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -17,22 +18,26 @@ type GrpcHooks struct {
 }
 
 func GrpcServer() {
-	grpc_port := configs.GrpcPort()
 
-	// Run gRPC
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%v", grpc_port))
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
+	go func() {
+		time.Sleep(22)
+		grpc_port := configs.GrpcPort()
 
-	svc := grpc.NewServer()
-	proto.RegisterMainServiceServer(svc, &GrpcHooks{}) // register this gRPC with real name service
-	reflection.Register(svc)
+		// Run gRPC
+		lis, err := net.Listen("tcp", fmt.Sprintf(":%v", grpc_port))
+		if err != nil {
+			log.Fatalf("failed to listen: %v", err)
+		}
 
-	fmt.Printf("gRPC Started at http://%v:%v ...\n", configs.GrpcHost(), grpc_port)
-	if err := svc.Serve(lis); err != nil {
-		log.Fatalf("failed to start gRPC serve: %v", err)
-	}
+		svc := grpc.NewServer()
+		proto.RegisterMainServiceServer(svc, &GrpcHooks{}) // register this gRPC with real name service
+		reflection.Register(svc)
+
+		fmt.Printf("gRPC Started at http://%v:%v ...\n", configs.GrpcHost(), grpc_port)
+		if err := svc.Serve(lis); err != nil {
+			log.Fatalf("failed to start gRPC serve: %v", err)
+		}
+	}()
 
 }
 

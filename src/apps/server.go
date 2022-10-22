@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"main-service/src/configs"
-	"time"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -13,9 +12,6 @@ import (
 func WebServer(app *fiber.App) {
 
 	// Run server.
-	go func() {
-		log.Fatal(app.Listen(fmt.Sprintf("0.0.0.0:%v", configs.GetPortWebServer())))
-	}()
-	time.Sleep(22)
+	log.Fatal(app.Listen(fmt.Sprintf("0.0.0.0:%v", configs.GetPortWebServer())))
 
 }

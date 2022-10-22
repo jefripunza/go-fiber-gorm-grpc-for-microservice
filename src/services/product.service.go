@@ -3,10 +3,10 @@ package services
 import (
 	"fmt"
 	"main-service/src/dto/request"
-	"main-service/src/handlers"
 	"main-service/src/messages"
 	"main-service/src/models/repositories"
 	"main-service/src/utils/gofiber"
+	"main-service/src/utils/handlers"
 
 	"github.com/gofiber/fiber/v2"
 )

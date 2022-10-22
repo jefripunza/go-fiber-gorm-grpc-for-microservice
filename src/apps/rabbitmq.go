@@ -11,13 +11,11 @@ func RabbitConnect() (*amqp.Channel, error) {
 	if err_conn != nil {
 		return nil, err_conn
 	}
-	// defer conn.Close()
 
 	channel, err_channel := conn.Channel()
 	if err_channel != nil {
 		return nil, err_conn
 	}
-	// defer channel.Close()
 
 	return channel, nil
 }

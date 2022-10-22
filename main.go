@@ -5,6 +5,8 @@ import (
 	"main-service/src/consumer"
 	"main-service/src/middlewares"
 	"main-service/src/routers"
+	"main-service/src/scheduler"
+	"main-service/src/utils/api"
 	"main-service/src/utils/environment"
 
 	"github.com/gofiber/fiber/v2"
@@ -35,35 +37,27 @@ func main() {
 	environment.Get()
 	environment.RabbitMQ() // if use RabbitMQ
 
-	// Define Fiber config.
-	config := configs.FiberConfig()
-	app := fiber.New(config)
+	// Define Fiber App.
+	app := fiber.New(configs.FiberConfig())
 
 	// import middleware (global) yang dibutuhkan
 	middlewares.Cors(app)
 	middlewares.Logger(app)
 
-	//==========================================================//
-
-	// Register All API Routers
-	api := app.Group(configs.GetBaseEndpoint())
-	routers.Basic(api) //> Connect to gRPC Service
-	routers.RabbitMQ(api)
-	routers.Products(api)
-
-	// Register All Consumer RabbitMQ (if use)
-	consumer.Example()
-
-	//==========================================================//
-
 	//-> Require Routers
-	routers.Index(app)
-	routers.Swagger(app)
-	routers.NotFound(app)
+	routers.Register(app) // first !!!
+	api.Index(app)        // if use
+	api.Swagger(app)      // if use
+	api.NotFound(app)
+
+	//-> Use Consumer RabbitMQ
+	consumer.Register() // if use
+	//-> Use Task Scheduler
+	scheduler.Register() // if use
 
 	//-> Execute all Apps
+	run.DatabaseMigration() // if use // activate in .env > DB_SYNC
+	run.GrpcServer()        // if use // ending...
 	run.WebServer(app)
-	run.DatabaseMigration() // activate in .env > DB_SYNC
-	run.GrpcServer()        // ending...
 
 }

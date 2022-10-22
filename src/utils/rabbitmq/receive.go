@@ -26,7 +26,7 @@ func CreateListener(queue_name string) <-chan amqp.Delivery {
 	if err_consume != nil {
 		log.Println(err_consume)
 	} else {
-		fmt.Printf("Waiting for messages : %s\n", queue_name)
+		fmt.Printf("Waiting messages from %s...\n", queue_name)
 	}
 	return messages
 }
