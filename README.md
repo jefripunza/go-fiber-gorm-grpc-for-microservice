@@ -8,24 +8,24 @@
 
 | Name         | Path                         | Description                                                                                                     | Generate  |
 |--------------|------------------------------|-----------------------------------------------------------------------------------------------------------------|:---------:|
-| docs         | /                            | hasil generate dari **swagger** (swag init)                                                                     |  ✅ auto   |
-| proto        | /                            | hasil generate dari protoc, menyimpan file **protobuf** dan juga generate nya                                   |  ✅ auto   |
-| apps         | /src                         | semua **Ready App** dari **Server, Database, gRPC server, Redis, RabbitMQ, WebSocket**                          |     ❌     |
-| configs      | /src                         | cara/method pengambilan value dari **.env**                                                                     |     ❌     |
-| consumer     | /src/queues                  | listening RabbitMQ Queue                                                                                        | ✅ organic |
-| controllers  | /src                         | handling request (api) value nya apa saja/type                                                                  | ✅ organic |
+| docs         | /docs                        | hasil generate dari **swagger** (swag init)                                                                     |  ✅ auto   |
+| proto        | /proto                       | hasil generate dari protoc, menyimpan file **protobuf** dan juga generate nya                                   |  ✅ auto   |
+| apps         | /src/apps                    | semua **Ready App** dari **Server, Database, gRPC server, Redis, RabbitMQ, WebSocket**                          |     ❌     |
+| configs      | /src/configs                 | cara/method pengambilan value dari **.env**                                                                     |     ❌     |
+| consumer     | /src/consumer/queues         | listening RabbitMQ Queue                                                                                        | ✅ organic |
+| controllers  | /src/controllers             | handling request (api) value nya apa saja/type                                                                  | ✅ organic |
 | dto          | /src/request , /src/response | **(data transfer object)** management format request & response                                                 | ✅ organic |
-| helpers      | /src                         | menampung semua logic kebutuhan yang bisa di **reusable**                                                       |     ❌     |
-| messages     | /src                         | **format penulisan** apapun (semua) sehingga jika ada perubahan (text) tinggal rubah 1x saja                    |     ❌     |
-| middlewares  | /src                         | **jembatan logic** sebelum masuk ke **logic utama**, biasanya seperti **token validation** atau yang lainnya... | ✅ organic |
-| entities     | /src/models                  | schema tables digunakan untuk **validasi table database** dan **migration table**                               | ✅ organic |
-| repositories | /src/models                  | logic khusus untuk pengolahan database (insert, read, update, delete)                                           | ✅ organic |
-| remotes      | /src                         | function pengambilan data dari gRPC service lain (communications)                                               | ✅ organic |
-| routers      | /src/endpoints               | tempat routing endpoint url (api) dan juga pemasangan middleware                                                | ✅ organic |
-| scheduler    | /src/tasks                   | tempat scheduler register dan tasks yang dipakai                                                                | ✅ organic |
-| services     | /src                         | tempat **logic utama** dari service ini (logic utama hanya boleh disini)                                        | ✅ organic |
-| utils        | /src/*                       | method penting yang sangat digunakan dan bisa saja reusable                                                     |     ❌     |
-| tests        | /                            | tempat **unit test** logic dari services                                                                        | ✅ organic |
+| helpers      | /src/helpers                 | menampung semua logic kebutuhan yang bisa di **reusable**                                                       |     ❌     |
+| messages     | /src/messages                | **format penulisan** apapun (semua) sehingga jika ada perubahan (text) tinggal rubah 1x saja                    |     ❌     |
+| middlewares  | /src/middlewares             | **jembatan logic** sebelum masuk ke **logic utama**, biasanya seperti **token validation** atau yang lainnya... | ✅ organic |
+| entities     | /src/models/entities         | schema tables digunakan untuk **validasi table database** dan **migration table**                               | ✅ organic |
+| repositories | /src/models/repositories     | logic khusus untuk pengolahan database (insert, read, update, delete)                                           | ✅ organic |
+| remotes      | /src/remotes                 | function pengambilan data dari gRPC service lain (communications)                                               | ✅ organic |
+| routers      | /src/routers/endpoints       | tempat routing endpoint url (api) dan juga pemasangan middleware                                                | ✅ organic |
+| scheduler    | /src/scheduler/tasks         | tempat scheduler register dan tasks yang dipakai                                                                | ✅ organic |
+| services     | /src/services                | tempat **logic utama** dari service ini (logic utama hanya boleh disini)                                        | ✅ organic |
+| utils        | /src/utils/*                 | method penting yang sangat digunakan dan bisa saja reusable                                                     |     ❌     |
+| tests        | /tests                       | tempat **unit test** logic dari services                                                                        | ✅ organic |
 
 ---
 
