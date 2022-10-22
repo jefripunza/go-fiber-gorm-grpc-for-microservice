@@ -40,7 +40,6 @@ RUN ls -a &&\
     rm *.db || true &&\
     rm main.go &&\
     rm ovvbt || true &&\
-    rm package.json || true &&\
     rm README.md
 
 #-> 💯 Configuration Environment (change target env)

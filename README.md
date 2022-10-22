@@ -60,6 +60,8 @@ Execute ?
 
 ## Structure Directory of Microservice
 
+clone dalam 1 folder...
+
 ```
 go-fiber-gorm-grpc-for-microservice
 │
@@ -78,11 +80,26 @@ go-fiber-gorm-grpc-for-microservice
 ## How to Use
 
 1. install Docker Desktop or Docker (whatever)
-2. create container :
+2. open/running Docker
+3. install require...
+```bash
+// RabbitMQ (docker)
+./ovvbt install rabbitmq
+```
+4. pastikan RabbitMQ (docker) sudah berjalan
+5. setup RabbitMQ...
+```
+- akses -> http://localhost:15672/
+- credential -> user:guest pass:guest
+- create exchange "example-testing-exchange"
+- create queue "example-testing-queue"
+- binding queue to exchange
+```
+6. create container :
 ```bash
 docker-compose up -d
 ```
-3. create all container microservices testing (link bellow)
+7. create all container microservices testing (link bellow)
 
 ---
 
@@ -106,4 +123,5 @@ docker-compose up -d
 
 Note :
 - clone semua ini didalam 1 folder (seperti di **Folder Structure**)
+- pastikan sudah setup exchange dan queue di RabbitMQ
 - perhatikan port default pada docker network (disini di set 172.17.0.1) (lihat di Dockerfile)
