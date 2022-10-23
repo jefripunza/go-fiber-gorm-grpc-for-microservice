@@ -3,4 +3,8 @@ yarn.lock
 *.db
 
 __debug_bin.exe
+application.exe
+application
+
+tmp
 vendor

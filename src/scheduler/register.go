@@ -15,7 +15,7 @@ func Register() {
 	s := gocron.NewScheduler(now)
 
 	//-> Register here...
-	s.Every(10).Seconds().Do(tasks.Example)
+	s.Every(10).Seconds().WaitForSchedule().Do(tasks.Example)
 
 	s.StartAsync()
 
