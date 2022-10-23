@@ -2,9 +2,10 @@ node_modules
 yarn.lock
 *.db
 
+__debug_bin
 __debug_bin.exe
-application.exe
 application
+application.exe
 
 tmp
 vendor

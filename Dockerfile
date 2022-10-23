@@ -26,20 +26,26 @@ RUN go build -o ./run
 
 #-> 🚫 Remove Project Files & Folders
 RUN ls -a &&\
+    rm -rf .git || true &&\
     rm -rf .vscode &&\
     rm -rf git_assets || true &&\
     rm -rf proto &&\
     rm -rf src &&\
     rm -rf tests || true &&\
+    rm __debug_bin || true &&\
     rm __debug_bin.exe || true &&\
     rm .gitignore &&\
+    rm application || true &&\
+    rm application.exe || true &&\
     rm docker-compose.yaml &&\
     rm Dockerfile &&\
     rm go.mod &&\
     rm go.sum &&\
+    rm kita || true &&\
+    rm kita.exe || true &&\
+    rm kita.app || true &&\
     rm *.db || true &&\
     rm main.go &&\
-    rm ovvbt || true &&\
     rm README.md
 
 #-> 💯 Configuration Environment (change target env)
