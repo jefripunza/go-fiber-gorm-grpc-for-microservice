@@ -1,11 +1,9 @@
 package tasks
 
-import (
-	"fmt"
-)
+import "log"
 
 func Example() {
 
-	fmt.Println("halo gaess.........................")
+	log.Printf("halo gaess.........................\n")
 
 }

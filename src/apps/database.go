@@ -72,7 +72,7 @@ func DatabaseMigration() {
 		if configs.DbSync() == "true" {
 			fmt.Println("Database Migrating...")
 			models.MigrationTables(DatabaseConnect())
-			fmt.Println("Migrate Success!")
+			fmt.Println("Database Migrate Success!")
 		} else {
 			fmt.Println("Database Off Migrating!")
 		}

@@ -1,7 +1,9 @@
 package apps
 
 import (
+	"fmt"
 	"microservice/src/configs"
+	"time"
 
 	"github.com/streadway/amqp"
 )
@@ -18,4 +20,14 @@ func RabbitConnect() (*amqp.Channel, error) {
 	}
 
 	return channel, nil
+}
+
+func RabbitTryConnection() {
+	go func() {
+		time.Sleep(22)
+		_, err_conn := amqp.Dial(configs.RabbitURL())
+		if err_conn != nil {
+			panic(fmt.Sprintf("Rabbit is not connect !!, %v", err_conn))
+		}
+	}()
 }

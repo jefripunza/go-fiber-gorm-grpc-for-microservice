@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"encoding/json"
+	"fmt"
 	"regexp"
 	"strings"
 )
@@ -17,8 +18,16 @@ func LengthOfString(value string) int {
 }
 
 func InterfaceToString(value map[string]interface{}) string {
-	test, _ := json.Marshal(value)
-	return string(test)
+	out, _ := json.Marshal(value)
+	return string(out)
+}
+func StringToJson(jsonString string) map[string]interface{} {
+	var jsonMap map[string]interface{}
+	err := json.Unmarshal([]byte(jsonString), &jsonMap)
+	if err != nil {
+		fmt.Printf("ERROR: convert string to json, %v\n", err)
+	}
+	return jsonMap
 }
 
 func MapToJson(value []byte) map[string]interface{} {
