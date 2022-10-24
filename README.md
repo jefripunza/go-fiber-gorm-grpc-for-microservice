@@ -32,7 +32,7 @@
 ## Routing Schemas
 
 
-![Routing Schemas (diagram)](git_assets/api-grpc-schema.jpg)
+![Routing Schemas (diagram)](git_assets/api-grpc-schema.jp)
 
 
 ---
