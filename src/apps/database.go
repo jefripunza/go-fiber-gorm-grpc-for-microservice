@@ -21,7 +21,8 @@ func DatabaseConnect() *gorm.DB {
 
 	db_log := configs.DbLog()
 	db_type := configs.DbType()
-	dsn := configs.DatabaseConfig()
+	db_user, db_pass, db_host, db_port, db_name := configs.DatabaseConfig()
+	var dsn string
 
 	var db_config *gorm.Config
 	if db_log == "true" {
@@ -45,8 +46,10 @@ func DatabaseConnect() *gorm.DB {
 	if db_type == "sqlite" {
 		connection, err_msg = gorm.Open(sqlite.Open(fmt.Sprintf("%v.db", configs.DbName())), db_config)
 	} else if db_type == "mysql" {
+		dsn = fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", db_user, db_pass, db_host, db_port, db_name)
 		connection, err_msg = gorm.Open(mysql.Open(dsn), db_config)
 	} else if db_type == "postgres" {
+		dsn = fmt.Sprintf("host=%v user=%v password=%v dbname=%v port=%v sslmode=disable TimeZone=%v", db_host, db_user, db_pass, db_name, db_port, configs.GetTimezone())
 		connection, err_msg = gorm.Open(postgres.Open(dsn), db_config)
 	} else {
 		panic("hey dude, database type is not found!")
@@ -65,8 +68,8 @@ func DatabaseConnect() *gorm.DB {
 
 }
 
-func DatabaseMigration() {
-
+func DatabaseTryConnection() {
+	DatabaseConnect()
 	go func() {
 		time.Sleep(22)
 		if configs.DbSync() == "true" {
@@ -77,5 +80,4 @@ func DatabaseMigration() {
 			fmt.Println("Database Off Migrating!")
 		}
 	}()
-
 }

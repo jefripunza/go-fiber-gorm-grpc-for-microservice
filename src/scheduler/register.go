@@ -1,22 +1,20 @@
 package scheduler
 
 import (
+	"microservice/src/apps"
+	"microservice/src/configs"
 	"microservice/src/scheduler/tasks"
-	"time"
-
-	"github.com/go-co-op/gocron"
 )
 
 // reference : https://github.com/go-co-op/gocron
 
 func Register() {
+	if configs.SchedulerRun() == "true" {
+		scheduler := apps.SchedulerInit()
 
-	now, _ := time.LoadLocation("Asia/Jakarta")
-	s := gocron.NewScheduler(now)
+		//-> Register here...
+		scheduler.Every(10).Seconds().WaitForSchedule().Do(tasks.Example)
 
-	//-> Register here...
-	s.Every(10).Seconds().WaitForSchedule().Do(tasks.Example)
-
-	s.StartAsync()
-
+		scheduler.StartAsync()
+	}
 }

@@ -56,10 +56,10 @@ func main() {
 	scheduler.Register() // if use
 
 	//-> Execute all Apps
-	run.RabbitTryConnection() // if use
-	run.RedisTryConnection()  // if use
-	run.DatabaseMigration()   // if use // activate in .env > DB_SYNC
-	run.GrpcServer()
-	run.WebServer(app) // ending...
+	run.RabbitTryConnection()   // if use
+	run.RedisTryConnection()    // if use
+	run.DatabaseTryConnection() // if use // activate migration in .env > DB_SYNC
+	run.GrpcServer()            // if use
+	run.WebServer(app)          // ending...
 
 }
