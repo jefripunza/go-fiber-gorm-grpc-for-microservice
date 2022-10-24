@@ -29,6 +29,14 @@
 
 ---
 
+## Routing Schemas
+
+
+![Routing Schemas (diagram)](git_assets/api-grpc-schema.jpg)
+
+
+---
+
 ## Files Information
 
 | Name                            | Extension    | Path        | Description                                                        |
@@ -46,14 +54,14 @@
 
 ---
 
-## OVVBT CLI App
+## KITAPP CLI App
 
 
-![Schemas Routing (diagram)](git_assets/ovvbt-cli-app.png)
+![KITAPP CLI App](git_assets/kitapp-cli-app.png)
 
 Execute ?
 ```bash
-./ovvbt
+./kita
 ```
 
 ---
@@ -117,9 +125,9 @@ docker-compose up -d
 
 ---
 
-## Microservices Schemas
+## Microservice Schema
 
-![Schemas Routing (diagram)](git_assets/schema.jpg)
+![Microservice Schema Routing (diagram)](git_assets/microservice-schema.jpg)
 
 ---
 
